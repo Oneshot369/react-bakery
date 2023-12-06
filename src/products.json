@@ -22,13 +22,5 @@
         "Ingredients": "flower, butter, salt, milk, yeast",
         "Price": 5.23,
         "Qty": 10
-    },
-    {
-        "ID": 7,
-        "Name": "Donut",
-        "Calories": 200,
-        "Ingredients": "flower, sugar",
-        "Price": 5,
-        "Qty": 30
     }
 ]

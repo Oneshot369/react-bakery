@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import dataSource from "./dataSource";
+import './Edit.css'
 
-const EditAlbum = (props) => {
-
+const EditOne = (props) => {
     let ourProduct={
         ID: 0,
         Name: "",
@@ -12,102 +12,163 @@ const EditAlbum = (props) => {
         Price: "",
         Qty: 0
     }
-    let isEditing = true;
-    
-    if(props.album){
-        ourProduct = props.album;
-        isEditing = false
+    let name = '';
+    let cal = 0;
+    let ing = '';
+    let price = 0;
+    let qty = 0;
+    let isEditing = false;
+    if(props.prod){
+        ourProduct = props.prod;
+        isEditing = true;
+        name = ourProduct.Name;
+        cal = ourProduct.Calories;
+        ing = ourProduct.Ingredients;
+        price = ourProduct.Price;
+        qty = ourProduct.Qty;
     }
+
+
+    const navigate = useNavigate();
+    const [prodName, setProdName] = useState(name);
+    const [prodCalories, setProdCalories] = useState(cal);
+    const [prodIngredients, setProdIngredients] = useState(ing);
+    const [prodPrice, setProdPrice] = useState(price);
+    const [prodQty, setProdQty] = useState(qty);
+
+    const updateName= (event) =>{
+        setProdName(event.target.value);
+    }
+    const updateCal= (event) =>{
+        setProdCalories(event.target.value);
+    }
+
+    const updateIng= (event) =>{
+        setProdIngredients(event.target.value);
+    }
+
+    const updatePrice= (event) =>{
+        setProdPrice(event.target.value);
+    }
+
+    const updateQty= (event) =>{
+        setProdQty(event.target.value);
+    }
+    
+    
 
     const handleFormSubmit = (event) =>{
         event.preventDefault();
-        console.log("submit");
+        console.log("submitted");
 
-        const album={
-            albumId: ourAlbum.albumId,
-            title: albumTitle,
-            artist: artist,
-            description: description,
-            year: year,
-            image: image,
-            tracks: [],
+        const productToUpdate={
+            ID: ourProduct.ID,
+            Name: prodName,
+            Calories: prodCalories,
+            Ingredients: prodIngredients,
+            Price: prodPrice,
+            Qty: prodQty,
         }
-        console.log(album);
 
-        saveAlbum(album);
+        saveAlbum(productToUpdate);
     }
 
-    const saveAlbum = async (album) =>{
-        
+    
+    const handleCancel = () =>{
+        navigate("/");
+    }
+    const handleDelete = (event) =>{
+        console.log("Delete", ourProduct.ID);
+        dataSource.delete('/products/' + ourProduct.ID);
+        navigate("/");
     }
 
+    const saveAlbum = async (prod) =>{
+        let res;
+        if(isEditing){
+            res = await dataSource.put('/products', prod);
+        }
+        else{
+            res = await dataSource.post('/products', prod);
+        }
+        console.log(res);
+        navigate("/");
+    }
 
     return <div>
         <form className="container" onSubmit={handleFormSubmit}>
-            <h1>{isEditing ? "Create New": "Edit"} album</h1>
+            <h1>{isEditing ?  "Edit":"Create New"} Product</h1>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputEmail1" className="form-label">
-                    Album Title
+                    Name
                 </label>
                 <input
-                    onChange={updateTitle}
+                    onChange={updateName}
                     type="text"
                     className="form-control"
                     id="exampleInputEmail1"
+                    value={prodName}
                 />
             </div>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputPassword1" className="form-label">
-                    Artist
+                    Calories
                 </label>
                 <input
-                    onChange={updateArtist}
-                    type="text"
+                    onChange={updateCal}
+                    type="number"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={prodCalories}
                 />
             </div>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputPassword1" className="form-label">
-                    Description
+                    Ingredients
                 </label>
                 <input
-                    onChange={updateDescription}
+                    onChange={updateIng}
                     type="text"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={prodIngredients}
                 />
             </div>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputPassword1" className="form-label">
-                    Year
+                    Price
                 </label>
                 <input
-                    onChange={updateYear}
-                    type="text"
+                    onChange={updatePrice}
+                    type="number"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={prodPrice}
                 />
             </div>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputPassword1" className="form-label">
-                    Image
+                    Quantity
                 </label>
                 <input
-                    onChange={updateImage}
-                    type="text"
+                    onChange={updateQty}
+                    type="number"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={prodQty}
                 />
             </div>
-            <button type="button" className="btn btn-primary " onClick={handleCancel}>
+            <button type="button" className="btn btn-primary can" onClick={handleCancel}>
                 Cancel
             </button>
-            <button type="submit" className="btn btn-primary ">
+            <button type="submit" className="btn btn-primary sub">
                 Submit
             </button>
+            {!isEditing ? "": <button type="button" className="btn btn-primary del" onClick={handleDelete}>
+                Delete
+            </button>}
         </form>
 
     </div>;
 };
-export default EditAlbum;
+export default EditOne;

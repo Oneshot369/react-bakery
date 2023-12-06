@@ -1,0 +1,25 @@
+.btn{
+    margin-left: 5px;
+    border: none;
+    
+}
+
+.can:hover{
+    background-color:bisque;
+}
+.sub:hover{
+    background-color:aquamarine;
+}
+.del:hover{
+    background-color:chocolate;
+}
+
+.can{
+    background-color: coral;
+}
+.sub{
+    background-color: green;
+}
+.del{
+    background-color: red;
+}
