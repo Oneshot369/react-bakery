@@ -1,0 +1,34 @@
+[
+    {
+        "ID": 1,
+        "Name": "Cup cake",
+        "Calories": 200,
+        "Ingredients": "all-purpose flour, baking powder, salt, unsalted butter, granulated sugar, eggs, milk, vanilla extract",
+        "Price": 4.99,
+        "Qty": 25
+    },
+    {
+        "ID": 2,
+        "Name": "Vanilla Cake",
+        "Calories": 2000,
+        "Ingredients": "Cake flower, eggs, baking powder, baking soda, buttermilk",
+        "Price": 99.99,
+        "Qty": 3
+    },
+    {
+        "ID": 4,
+        "Name": "Croissant",
+        "Calories": 200,
+        "Ingredients": "flower, butter, salt, milk, yeast",
+        "Price": 5.23,
+        "Qty": 10
+    },
+    {
+        "ID": 7,
+        "Name": "Donut",
+        "Calories": 200,
+        "Ingredients": "flower, sugar",
+        "Price": 5,
+        "Qty": 30
+    }
+]

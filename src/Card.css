@@ -1,0 +1,89 @@
+img {
+    display: block;
+    margin: 1rem auto;
+    max-width: 100%;
+}
+
+p {
+    padding: 0 2.5rem 2.5rem;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+.buttonCard{
+    max-width: 33%;
+    border: none;
+    margin: none;
+    padding: none;
+    height:auto;
+    background-color: white;    
+}
+.card {
+    margin: 1rem;
+    /* background: white; */
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .2s linear;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+}
+
+@media screen and (min-width: 600px) {
+    .card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+        flex: 1 1 calc(33% - 2rem);
+    }
+}
+
+
+
+.productTitle {
+    text-align: center;
+    padding: 1.5rem 2.5rem;
+    background-image: linear-gradient(120deg, #79e0d3 0%, #7762ee 100%);
+    margin: 0 0 2rem 0;
+    font-size: 1.5rem;
+    color: white;
+}
+.addLabel{
+    text-align: center;
+    align-self: center;
+    align-items: center;
+}
+.form-group{
+    width: 40rem;
+    text-align: center;
+}
+.addForm{
+    align-items: center;
+    align-content: center;
+}
+.upbtn{
+    margin-top: 5px;
+    justify-self: right;
+    background-image: linear-gradient(120deg, #449cee 0%, #7e4af7 100%);
+}
+.delbtn{
+    background-image: linear-gradient(120deg, #ee4485 0%, #f74a4a 100%);
+    border: none;
+    align-self: right;
+}
+.backbtn{
+    background-image: linear-gradient(120deg, #90ee44 0%, #3ca753 100%);
+    border: none;
+    align-self: right;
+}
