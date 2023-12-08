@@ -27,7 +27,10 @@ const EditOne = (props) => {
         price = ourProduct.Price;
         qty = ourProduct.Qty;
     }
-
+    let showAddBtn = false;
+    if(props.user && isEditing){
+        showAddBtn = true;
+    }
 
     const navigate = useNavigate();
     const [prodName, setProdName] = useState(name);
@@ -83,6 +86,13 @@ const EditOne = (props) => {
         navigate("/");
     }
 
+    const handleToCart = async (event) =>{
+        console.log("userID", props.user.ID);
+        console.log("productID", ourProduct.ID);
+        let resString = '/cart/' + props.user.ID + '/' + ourProduct.ID;
+        
+        await dataSource.put(resString);
+    }
     const saveAlbum = async (prod) =>{
         let res;
         if(isEditing){
@@ -166,6 +176,9 @@ const EditOne = (props) => {
             </button>
             {!isEditing ? "": <button type="button" className="btn btn-primary del" onClick={handleDelete}>
                 Delete
+            </button>}
+            {!showAddBtn ? "": <button type="button" className="btn btn-primary del" onClick={handleToCart}>
+                Cart
             </button>}
         </form>
 

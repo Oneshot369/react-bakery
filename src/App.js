@@ -6,14 +6,15 @@ import "bootstrap/dist/css/bootstrap.css"
 import CardList from './CardList';
 import EditOne from "./EditOne";
 import dataSource from "./dataSource";
+import User from "./User";
 
 function App() {
   
   const [productList, setProductList] = useState([]);
   const [selectedProd, setSelectedProd] = useState(0);
+  const [selectedUser, setSelectedUser] = useState(0);
   const navigate = useNavigate();
   let refresh = false;
-
   const loadProducts = async () => {
     const res = await dataSource.get("/products");
 
@@ -31,6 +32,11 @@ function App() {
     setSelectedProd(prod);
     navigate(uri);
   }
+  const login = (prod) =>{
+    console.log("id, in editOne App.js", prod);
+    setSelectedUser(prod);
+  }
+
   return (  
     <div>
         <NavBar/>
@@ -43,7 +49,10 @@ function App() {
             <EditOne></EditOne>
           }/>
           <Route exact path='/edit' element={
-            <EditOne prod={selectedProd}></EditOne>
+            <EditOne prod={selectedProd} user={selectedUser}></EditOne>
+          }/>
+          <Route exact path='/login' element={
+            <User user={selectedUser} loginFunc = {login}></User>
           }/>
         </Routes>
     </div>

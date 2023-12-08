@@ -32,6 +32,11 @@ const NavBar = () => {
                         <Link to='/add' className='linkNav'>Add product</Link>
                     </span>
                     </li>
+                    <li className="nav-item">
+                    <span className='nav-item nav-link' href='#'>
+                        <Link to='/login' className='linkNav'>Login</Link>
+                    </span>
+                    </li>
                 </ul>
                 </div>
                 </div>
